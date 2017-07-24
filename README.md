@@ -2,6 +2,11 @@
 
 Ūnus is a machine learning based patient matching engine built for the [ONC Patient Matching Challenge][1]. 
 
+Detailed write up are available here:
+http://mindfulmachines.io/blog/2017/7/23/onc-patient-matching-challenge-part1
+http://mindfulmachines.io/blog/2017/7/23/onc-patient-matching-challenge-part-2
+
+
 ## Technology
 The technologies used to build the matching engine are:
 * Scala
