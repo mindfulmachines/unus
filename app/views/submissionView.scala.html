@@ -1,0 +1,31 @@
+@(blockers: List[BlockerView],
+        submission: String,
+        model: String,
+        selectedBlockers: Set[String],
+        f1: Option[BigDecimal],
+        precision: Option[BigDecimal],
+        recall: Option[BigDecimal]
+)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Create Submission</title>
+    </head>
+    <body>
+        @helper.form(action = routes.MainController.submissionUpdate()) {
+            Name: <input type="text" name="submission" disabled value="@submission"><br>
+            <input type="hidden"  name="submission" value="@submission">
+            Model: <input type="text" name="model" disabled value="@model"><br>
+            <input type="hidden" name="model" value="@model">
+            @blockersList(blockers, selectedBlockers, true)<br>
+            @for((s, i) <- selectedBlockers.zipWithIndex) {
+                <input type="hidden" name="blockers[@i]" value="@s">
+            }
+            F1: <input type="text" name="f1" value="@f1.getOrElse("")"><br>
+            Precision: <input type="text" name="precision" value="@precision.getOrElse("")"><br>
+            Recall: <input type="text" name="recall" value="@recall.getOrElse("")"><br>
+            <input type="submit" value="Save">
+        }
+    </body>
+</html>

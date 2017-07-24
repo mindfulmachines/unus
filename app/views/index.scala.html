@@ -1,0 +1,21 @@
+@(blockers: List[String])
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Patient Matcher</title>
+    </head>
+    <body>
+        <a href="/blockers">Blockers</a><br>
+        <a href="/model">Models</a><br>
+        <a href="/submission">Submissions</a><br>
+        <form action="/comparison/blocker" method="get">
+            Select Blocker For Comparisons: <select name="blocker">
+                @blockers.map { b =>
+                    <option>@b</option>
+                }
+            </select>
+            <input type="submit" value="Compare">
+        </form>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+@(blockers: List[BlockerView], selected: Set[String]=Set(), disabled: Boolean= false)
+
+<table>
+    <tr>
+        <th>Blocker</th>
+        <th>Rows in DB</th>
+        <th>Valid Labels</th>
+        <th>Total Labels</th>
+        <th>Rows in Total</th>
+        <th>Run</th>
+    </tr>
+    @for((n, index) <- blockers.sortBy(_.name).zipWithIndex) {
+        <tr>
+            <th>@n.name</th>
+            <th>@n.rowsDB</th>
+            <th>@n.validLabeledDB</th>
+            <th>@n.totalLabeledDB</th>
+            <th>@n.blocker.map(_.rows.toString).getOrElse("NA")</th>
+            <th><input type="checkbox" name="blockers[@index]" value="@n.name" @{if (selected.contains(n.name)) "checked" else "" } @{if (disabled) "disabled" else "" }></th>
+        </tr>
+    }
+</table>

@@ -1,0 +1,29 @@
+@(blockers: List[BlockerView],
+        models: List[String],
+        submission: String = "",
+        model: String = "",
+        selectedBlockers: Set[String] = Set(),
+        f1: Option[BigDecimal] = None,
+        precision: Option[BigDecimal] = None,
+        recall: Option[BigDecimal] = None)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Create Submission</title>
+    </head>
+    <body>
+        @helper.form(action = routes.MainController.submissionCreate()) {
+            Name: <input type="text" name="submission" value="@submission"><br>
+            Model:
+            <select name="model">
+                @models.map { m =>
+                    <option @{if(m == model) "selected" else ""}>@m</option>
+                }
+            </select>
+            <br>
+            @blockersList(blockers, selectedBlockers)<br>
+            <input type="submit" value="Run">
+        }
+    </body>
+</html>

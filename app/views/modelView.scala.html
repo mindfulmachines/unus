@@ -1,0 +1,20 @@
+@(blockers: List[BlockerView], batches: List[BatchView], features: List[String], model: unus.db.Model)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>View Model</title>
+    </head>
+    <body>
+        Name: <input type="text" name="model" value="@model.model" disabled><br>
+        @blockersList(blockers, model.blockers.toSet, true)<br>
+        @batchList(batches, model.batches.toSet, true)<br>
+        @featuresList(features, Set(model.features), true)<br>
+        Trees: <input type="text" name="trees" value="@model.trees" disabled><br>
+        Depth: <input type="text" name="depth" value="@model.depth" disabled><br>
+        F1: <input type="text" name="trees" value="@model.f1" disabled><br>
+        Precision: <input type="text" name="depth" value="@model.precision" disabled><br>
+        Recall: <input type="text" name="trees" value="@model.recall" disabled><br>
+        <a href="/model/clone/@model.model">Clone</a><th>
+    </body>
+</html>

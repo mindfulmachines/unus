@@ -1,0 +1,20 @@
+@(batches: List[BatchView], selected: Set[String] = Set(), disabled: Boolean = false)
+
+<table>
+    <tr>
+        <th>Batch</th>
+        <th>Valid Labels</th>
+        <th>Total Labels</th>
+        <th>Lastest TS</th>
+        <th>Select</th>
+    </tr>
+    @for((n, index) <- batches.sortBy(_.batch).zipWithIndex) {
+        <tr>
+            <th>@n.batch</th>
+            <th>@n.valid</th>
+            <th>@n.total</th>
+            <th>@n.ts.toLocalDateTime</th>
+            <th><input type="checkbox" name="batches[@index]" value="@n.batch" @{if (selected.contains(n.batch)) "checked" else "" } @{if (disabled) "disabled" else "" }></th>
+        </tr>
+    }
+</table>

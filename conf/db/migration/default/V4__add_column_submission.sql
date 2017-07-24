@@ -1,0 +1,1 @@
+ALTER TABLE "Submission" ADD COLUMN ts TIMESTAMP;

@@ -1,0 +1,22 @@
+GET   / controllers.MainController.index
+GET   /blockers controllers.MainController.blockers
+POST   /blockers/run controllers.MainController.runBlockers
+POST   /label/blocker/:blocker controllers.MainController.labelBlocker(blocker)
+POST   /label/prediction/:model controllers.MainController.labelPrediction(model)
+GET   /comparison/blocker/:blocker/:batch controllers.MainController.comparisonBlocker(blocker,batch)
+GET   /comparison/prediction/:model/:batch controllers.MainController.comparisonPrediction(model,batch)
+
+GET   /model/view/:model controllers.MainController.modelView(model)
+GET   /model/clone/:model controllers.MainController.modelCloneView(model)
+POST   /model/build controllers.MainController.modelCreate()
+GET   /model/create controllers.MainController.modelCreateView()
+GET   /model controllers.MainController.models
+
+GET   /submission/view/:submission controllers.MainController.submissionView(submission)
+POST   /submission/update/ controllers.MainController.submissionUpdate()
+GET   /submission/clone/:submission controllers.MainController.submissionCloneView(submission)
+POST  /submission/build controllers.MainController.submissionCreate()
+GET   /submission/create controllers.MainController.submissionCreateView()
+GET   /submission controllers.MainController.submissions
+
+GET   /comparison/blocker controllers.MainController.comparisonBlocker(blocker: String, batch: String ?= "")

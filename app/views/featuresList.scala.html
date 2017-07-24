@@ -1,0 +1,14 @@
+@(features: List[String], selected: Set[String] = Set(), disabled: Boolean = false)
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Select</th>
+    </tr>
+    @for((n, index) <- features.sorted.zipWithIndex) {
+        <tr>
+            <th>@n</th>
+            <th><input type="checkbox" name="features" value="@n" @{if (selected.contains(n)) "checked" else "" } @{if (disabled) "disabled" else "" }></th>
+        </tr>
+    }
+</table>

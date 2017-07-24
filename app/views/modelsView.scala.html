@@ -1,0 +1,35 @@
+@(models: List[unus.db.Model])
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>View Models</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Model</th>
+                <th>Timestamp</th>
+                <th>F1</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>Clone</th>
+                <th>Predictions</th>
+            </tr>
+            @for((n, index) <- models.sortBy(_.model).zipWithIndex) {
+                <tr>
+                    <th>@n.model</th>
+                    <th>@n.ts.toLocalDateTime</th>
+                    <th>@n.f1</th>
+                    <th>@n.precision</th>
+                    <th>@n.recall<th>
+                    <th><a href="/model/clone/@n.model">Clone</a><th>
+                    <th><a href="/comparison/prediction/@n.model/@{n.model}Override">Update</a><th>
+                </tr>
+            }
+        </table>
+        <form action="/model/create" method="get">
+            <input type="submit" value="Create">
+        </form>
+    </body>
+</html>

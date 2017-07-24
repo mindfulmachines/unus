@@ -1,0 +1,37 @@
+@(submissions: List[unus.db.Submission])
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>View Submissions</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Submission</th>
+                <th>Model</th>
+                <th>Timestamp</th>
+                <th>F1</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>Clone</th>
+                <th>Edit</th>
+            </tr>
+            @for((n, index) <- submissions.sortBy(_.submission).zipWithIndex) {
+                <tr>
+                    <th>@n.submission</th>
+                    <th>@n.model</th>
+                    <th>@n.ts.toLocalDateTime</th>
+                    <th>@n.f1</th>
+                    <th>@n.precision</th>
+                    <th>@n.recall<th>
+                    <th><a href="/submission/clone/@n.submission">Clone</a><th>
+                    <th><a href="/submission/view/@n.submission">Edit</a><th>
+                </tr>
+            }
+        </table>
+        <form action="/submission/create" method="get">
+            <input type="submit" value="Create">
+        </form>
+    </body>
+</html>

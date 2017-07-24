@@ -1,0 +1,27 @@
+@(blockers: List[BlockerView],
+        batches: List[BatchView],
+        features: List[String],
+        trees: Int=8,
+        depth: Int=8,
+        name: String = "",
+        selectedBlockers: Set[String] = Set(),
+        selectedBatches: Set[String] = Set(),
+        selectedFeatures: Set[String] = Set())
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Create Model</title>
+    </head>
+    <body>
+        @helper.form(action = routes.MainController.modelCreate()) {
+            Name: <input type="text" name="model" value="@name"><br>
+            @blockersList(blockers, selectedBlockers)<br>
+            @batchList(batches, selectedBatches)<br>
+            @featuresList(features, selectedFeatures)<br>
+            Trees: <input type="text" name="trees" value="@trees"><br>
+            Depth: <input type="text" name="depth" value="@depth"><br>
+            <input type="submit" value="Run">
+        }
+    </body>
+</html>

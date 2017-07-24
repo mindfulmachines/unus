@@ -1,0 +1,24 @@
+@(batch: String, b: unus.db.Prediction, p1: unus.db.Patient, p2: unus.db.Patient,
+        labelBlockerForm: Form[LabelBlockerForm])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Unlabeled Comparison</title>
+    </head>
+    <body>
+
+    </body>
+    <div>
+        @helper.form(action = routes.MainController.labelPrediction(b.model)) {
+            Prediction: @b.prediction<br>
+            Label: @b.label<br>
+            @comparisonTable(p1,p2)<br>
+            Batch Name: <input type="text" name="batch" value="@batch"><br>
+            <input type="hidden" name="id1" value="@p1.enterpriseId"><br>
+            <input type="hidden" name="id2" value="@p2.enterpriseId"><br>
+            <button type="submit" name="valid" value="true">Match</button>
+            <button type="submit" name="valid" value="false">No Match</button><br>
+        }
+    </div>
+</html>

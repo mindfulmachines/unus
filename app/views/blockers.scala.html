@@ -1,0 +1,14 @@
+@(blockers: List[BlockerView], blockerForm: Form[BlockerForm])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Welcome</title>
+    </head>
+    <body>
+        @helper.form(action = routes.MainController.runBlockers()) {
+            @blockersList(blockers)
+            <input type="submit" value="Run">
+        }
+    </body>
+</html>
